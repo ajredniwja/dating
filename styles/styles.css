@@ -1,0 +1,30 @@
+.navbar {
+    border-bottom: solid 1px;
+    border-color: lightgrey;
+    height: 2.3em;
+    background-color: #f2f2f2;
+}
+
+.container-fluid {
+    margin: 1.8em;
+    margin-left: 4em;
+    margin-right: 4em;
+    padding: 30px;
+    border: solid 1px;
+    border-color: lightgrey;
+}
+
+#left {
+    margin-top: 2em;
+}
+#para {
+    padding-left: 45px;
+    padding-top: 20px;
+    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid lightgrey;
+}
+
+button {
+    margin-top: 1em;
+    margin-bottom: 6em;
+}
