@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="http://asingh.greenriverdev.com/328/dating/styles/styles.css">
+    <title>Interests</title>
+</head>
+<body>
+<!--upper nav-->
+<nav class="navbar navbar-toggleable-sm bg-faded">
+    <span class="text-muted">My Dating Website</span>
+</nav>
+
+<div class="container-fluid rounded">
+    <!--heading-->
+    <div class="col-md-12">
+        <h1>Interests</h1>
+        <hr>
+    </div>
+    <form action="#" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="font-weight-bold col-md-12">In-door Interests</label>
+            </div>
+        </div>
+
+        <div class="row col-md-12">
+            <repeat group="{{@indoor}}" value="{{@in}}">
+                <div class="col-3">
+                    <input type="checkbox" name="indoor[]" value="{{@in}}">
+                    <repeat group="{{@indoor}}" value="{{@selectedin}}">
+                    </repeat>
+                    {{@in}}
+                </div>
+            </repeat>
+            <hr>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <label class="font-weight-bold col-md-12">Out-door Interests</label>
+            </div>
+        </div>
+
+        <div class="row col-md-12">
+            <repeat group="{{@outdoor}}" value="{{@out}}">
+                <div class="col-3">
+                    <input type="checkbox" name="outdoor[]" value="{{@out}}">
+                    <repeat group="{{@outdoor}}" value="{{@selectedout}}">
+                    </repeat>
+                    {{@out}}
+                </div>
+            </repeat>
+        </div>
+
+            <div class="offset-11">
+                <button type="submit" name="submit" class="btn btn-primary brn-lg">Next ></button>
+            </div>
+    </form>
+</div> <!--container fluid-->
+
+</body>
+</html>

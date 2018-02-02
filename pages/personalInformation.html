@@ -31,26 +31,36 @@
         <div class="row">
             <div class="col-md-9">
                 <label class="font-weight-bold col-md-9">First Name</label>
-
                 <div class="col-12 input-group">
-                    <input style="border-right: solid 0px" class="form-control">
+                    <input style="border-right: solid 0px" name="fname" placeholder="First Name" value="{{@fname}}" class="form-control">
                     <div style=" background-color: white"; class="input-group-addon">
                         <div style="height: 20px; padding: 2px; background-color: gray"; class="input-group-addon">
                         <img style="" src="http://asingh.greenriverdev.com/328/dating/images/c.png">
                     </div>
                     </div>
                 </div>
+                <div class="col-12">
+                    <check if="{{ isset(@errors['fname']) }}">
+                        <p style="color: red">{{ @errors['fname'] }}</p>
+                    </check>
+                </div>
                 <br>
 
                 <div class="col-12">
                     <label class="font-weight-bold">Last Name</label>
-                    <input class="form-control">
+                    <input name="lname" placeholder="Last Name" value="{{@lname}}" class="form-control">
+                    <check if="{{ isset(@errors['lname']) }}">
+                        <p style="color: red">{{ @errors['lname'] }}</p>
+                    </check>
                 </div>
                 <br>
 
                 <div class="col-12">
                     <label class="font-weight-bold">Age</label>
-                    <input class="form-control">
+                    <input name="age" placeholder="age" value="{{@age}}" class="form-control">
+                    <check if="{{ isset(@errors['age']) }}">
+                        <p style="color: red">{{ @errors['age'] }}</p>
+                    </check>
                 </div>
                 <br>
 
@@ -62,11 +72,17 @@
                     <label class="radio-inline">
                         <input type="radio" name="gender"> Female
                     </label>
+                    <check if="{{ isset(@errors['gender']) }}">
+                        <p style="color: red">{{ @errors['gender'] }}</p>
+                    </check>
                 </div>
                 <br>
                 <div class="col-12">
                     <label class="font-weight-bold">Phone Number</label>
-                    <input class="form-control">
+                    <input class="form-control" placeholder="Phone Number" name="pnumber" value="{{@pnumber}}">
+                    <check if="{{ isset(@errors['pnumber']) }}">
+                        <p style="color: red">{{ @errors['pnumber'] }}</p>
+                    </check>
                 </div>
             </div>
 
@@ -80,7 +96,7 @@
                 <br>
             </div>
             <div class="offset-11">
-                <button type="submit" class="btn btn-primary brn-lg">Next ></button>
+                <button type="submit" name="submit" value="submit" class="btn btn-primary brn-lg">Next ></button>
             </div>
         </div> <!--row-->
     </form>
