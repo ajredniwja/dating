@@ -14,7 +14,7 @@ $f3->set('DEBUG', 3);
 
 $f3->set('indoor', array('tv', 'movies', 'cooking', 'board games', 'puzzles', 'reading', 'playing cards', 'video games'));
 $f3->set('outdoor', array('hiking', 'biking', 'swimming', 'collecting', 'walking', 'climbing'));
-$f3->set('state',array('Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida',
+$f3->set('states',array('Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida',
     'Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota',
     'Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota',
     'Ohio','Oklahoma','Oregon','Pennsylvania', 'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont',
@@ -65,19 +65,19 @@ $f3->route('GET|POST /profile', function($f3)
 {
     if (isset($_POST['submit']))
     {
-        print_r($_POST);
+        //print_r($_POST);
         $email = $_POST['email'];
         $state = $_POST['state'];
         $seeking = $_POST['seeking'];
 
-        //require ('model/validate.php');
+        require ('model/validateprofile.php');
 
         $f3->set('email',$email);
-        $f3->set('state',$state);
+        $f3->set('stateselect',$state);
         $f3->set('seeking',$seeking);
         $f3->set('success',$success);
         $f3->set('errors', $errors);
-        print_r($errors);
+        //print_r($errors);
     }
 
     $template = new Template();
