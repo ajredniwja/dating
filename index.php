@@ -15,7 +15,6 @@ $f3->route('GET /', function ()
     $view = new View;
     echo $view->render
     ('pages/home.html');
-    //echo '<h1>Hello, world!</h1>';
 }
 );
 
