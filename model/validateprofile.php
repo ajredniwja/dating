@@ -1,3 +1,7 @@
+<!--Ajwinder Singh-->
+<!--2/1/2018-->
+<!--validateProfile.php-->
+<!--validates profile page-->
 <?php
 
 function validState($state)

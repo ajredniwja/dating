@@ -1,3 +1,7 @@
+<!--Ajwinder Singh-->
+<!--2/1/2018-->
+<!--validAct.php-->
+<!--validates interests page-->
 <?php
 function validOutdoor($out)
 {

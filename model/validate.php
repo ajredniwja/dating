@@ -1,5 +1,8 @@
+<!--Ajwinder Singh-->
+<!--2/1/2018-->
+<!--validate.php-->
+<!--validate personalinfo page-->
 <?php
-
 function validName($fname)
 {
     return !empty($fname) && ctype_alpha($fname);
