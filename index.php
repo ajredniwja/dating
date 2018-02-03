@@ -32,7 +32,7 @@ $f3->route('GET|POST /personalInfo', function($f3)
 {
     if (isset($_POST['submit']))
     {
-        print_r($_POST);
+        //print_r($_POST);
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $age = $_POST['age'];
@@ -48,13 +48,19 @@ $f3->route('GET|POST /personalInfo', function($f3)
         $f3->set('pnumber',$pnumber);
         $f3->set('success',$success);
         $f3->set('errors', $errors);
-        print_r($errors);
+        //print_r($_POST);
         if($success)
         {
+            $_SESSION['fname'] = $fname;
+            $_SESSION['lname'] = $lname;
+            $_SESSION['gender'] = $gender;
+            $_SESSION['age'] = $age;
+            $_SESSION['pnumber'] = $pnumber;
+
+
             header("Location: http://asingh.greenriverdev.com/328/dating/profile");
         }
     }
-
     $template = new Template();
     echo $template->render('pages/personalInformation.html');
 
@@ -65,19 +71,29 @@ $f3->route('GET|POST /profile', function($f3)
 {
     if (isset($_POST['submit']))
     {
-        //print_r($_POST);
+        print_r($_POST);
         $email = $_POST['email'];
         $state = $_POST['state'];
         $seeking = $_POST['seeking'];
+        $bio = $_POST['bio'];
+
 
         require ('model/validateprofile.php');
 
         $f3->set('email',$email);
         $f3->set('stateselect',$state);
         $f3->set('seeking',$seeking);
+        $f3->set('bio',$bio);
         $f3->set('success',$success);
         $f3->set('errors', $errors);
-        //print_r($errors);
+
+        if($success)
+        {
+            $_SESSION['email'] = $email;
+            $_SESSION['seeking'] = $seeking;
+            $_SESSION['bio'] = $bio;
+            header("Location: http://asingh.greenriverdev.com/328/dating/interests");
+        }
     }
 
     $template = new Template();
@@ -89,8 +105,24 @@ $f3->route('GET|POST /interests', function($f3)
 {
     if (isset($_POST['submit']))
     {
-        print_r($_POST);
-//        header("Location: http://asingh.greenriverdev.com/328/dating/summary");
+
+        $out = $_POST['outdoors'];
+        $in = $_POST['indoors'];
+
+        require ('model/validAct.php');
+
+        $f3->set('out',$out);
+        $f3->set('in',$in);
+        $f3->set('success',$success);
+        $f3->set('errors', $errors);
+        //print_r($errors);
+        if ($success)
+        {
+            $_SESSION['out'] = $out;
+            $_SESSION['in'] = $in;
+            header("Location: http://asingh.greenriverdev.com/328/dating/summary");
+        }
+
     }
 
     $template = new Template();
@@ -100,6 +132,18 @@ $f3->route('GET|POST /interests', function($f3)
 
 $f3->route('GET|POST /summary', function($f3)
 {
+    $f3->set('fname', $_SESSION['fname']);
+    $f3->set('lname', $_SESSION['lname']);
+    $f3->set('age', $_SESSION['age']);
+    $f3->set('gender', $_SESSION['gender']);
+    $f3->set('pnumber', $_SESSION['pnumber']);
+    $f3->set('email', $_SESSION['email']);
+    $f3->set('seeking', $_SESSION['seeking']);
+    $f3->set('interests', $_SESSION['interests']);
+    $f3->set('bio', $_SESSION['bio']);
+    $f3->set('out', $_SESSION['out']);
+    $f3->set('in', $_SESSION['in']);
+
     $template = new Template();
     echo $template->render('pages/summary.html');
 

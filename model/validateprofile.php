@@ -20,6 +20,13 @@ if ($seeking != "Female" && $seeking != "Male")
 {
     $errors['seeking'] = "Select one";
 }
+$bio = trim($bio);
+
+if (empty($bio))
+{
+    $errors['bio'] = "Add bio";
+}
+
 
 
 

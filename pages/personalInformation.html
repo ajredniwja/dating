@@ -67,10 +67,10 @@
                 <div class="col-12 radio">
                     <label class="font-weight-bold">Gender</label><br>
                     <label class="radio-inline">
-                        <input type="radio" name="gender"> Male
+                        <input type="radio" name="gender" value="Male"> Male
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="gender"> Female
+                        <input type="radio" name="gender" value="Female"> Female
                     </label>
                     <check if="{{ isset(@errors['gender']) }}">
                         <p style="color: red">{{ @errors['gender'] }}</p>

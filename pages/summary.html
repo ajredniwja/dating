@@ -2,9 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="http://asingh.greenriverdev.com/328/dating/styles/styles.css">
+    <title>Profile</title>
 </head>
+<style>
+    #adjustbio {
+        margin-top: 2em;
+    }
+</style>
 <body>
+<!--upper nav-->
+<nav class="navbar navbar-toggleable-sm bg-faded">
+    <span class="text-muted">My Dating Website</span>
+</nav>
+
+<div class="container-fluid rounded">
+    <!--heading-->
+    <form action="" method="post">
+        <div class="row">
+            <div class="col-md-6">
+               <table class="table table-bordered">
+                   <tr>
+                       <th scope="col" class="text-muted font-weight-normal">Name: {{@fname}} {{@lname}}</th>
+                   </tr>
+                   <tr>
+                       <th scope="col" class="text-muted font-weight-normal">Gender: {{@gender}}</th>
+                   </tr>
+                   <tr>
+                       <th scope="col" class="text-muted font-weight-normal">Age: {{@age}}</th>
+                   </tr>
+                   <tr>
+                       <th scope="col" class="text-muted font-weight-normal">Phone: {{@pnumber}}</th>
+                   </tr>
+                   <tr>
+                       <th scope="col" class="text-muted font-weight-normal">Email: {{@email}}</th>
+                   </tr>
+                   <tr>
+                       <th scope="col" class="text-muted font-weight-normal">Seeking: {{@seeking}}</th>
+                   </tr>
+                   <tr>
+                       <th scope="col" class="text-muted font-weight-normal">Interests:
+                           <repeat group="{{@in}}" value="@indoor">
+                               {{@indoor}}
+                           </repeat>
+                           <repeat group="{{@out}}" value="@outdoor">
+                               {{@outdoor}}
+                           </repeat>
+                       </th>
+                   </tr>
+               </table>
+            </div>
+            <div class="col-md-3 offset-2">
+                <img class="img-fluid" alt="photo" src="images/user_icon.png">
+                <h5 id="adjustbio" class="text-muted offset-1">Birography:</h5>
+                <p class="offset-1 text-muted">{{@bio}}</p>
+            </div>
+            <div class="offset-6">
+                <button type="submit" name="submit" class="btn btn-primary btn-lg">Contact Me!</button>
+            </div>
+        </div> <!--row-->
+    </form>
+</div> <!--container fluid-->
 
 </body>
 </html>

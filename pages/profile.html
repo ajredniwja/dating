@@ -71,9 +71,12 @@
 
             <div class="col-md-6">
                 <label class="font-weight-bold">Biography</label>
-                    <textarea class="form-control text-left" id="" rows="6">
-
+                    <textarea class="form-control text-left" id="" rows="6" name="bio">
+                        {{@bio}}
                     </textarea>
+                <check if="{{ isset(@errors['bio']) }}">
+                    <p style="color: red">{{ @errors['bio'] }}</p>
+                </check>
                 <br>
             </div>
             <div class="offset-11">

@@ -4,18 +4,21 @@ function validOutdoor($out)
     global $f3;
     return in_array($out, $f3->get('outdoor'));
 }
+
 function validIndoor($in)
 {
     global $f3;
     return in_array($in, $f3->get('indoor'));
 }
 
-if (!validIndoor($indoor))
+if (!isset($in))
 {
-    $errors['indoore'] = "Enter a valid state";
+    $errors['indoore'] = "Select atleast one indoor activity!";
 }
 
-if (!validOutdoor($outdoor))
+if (!isset($out))
 {
-    $errors['outdoore'] = "Enter a valid state";
+    $errors['outdoore'] = "Select atleast one indoor activity!";
 }
+$success = sizeof($errors) == 0;
+

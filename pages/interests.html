@@ -18,7 +18,7 @@
         <h1>Interests</h1>
         <hr>
     </div>
-    <form action="#" method="post">
+    <form action="" method="post">
         <div class="row">
             <div class="col-md-12">
                 <label class="font-weight-bold col-md-12">In-door Interests</label>
@@ -28,13 +28,18 @@
         <div class="row col-md-12">
             <repeat group="{{@indoor}}" value="{{@in}}">
                 <div class="col-3">
-                    <input type="checkbox" name="indoor[]" value="{{@in}}">
+                    <input type="checkbox" name="indoors[]" value="{{@in}}">
                     <repeat group="{{@indoor}}" value="{{@selectedin}}">
                     </repeat>
                     {{@in}}
                 </div>
             </repeat>
             <hr>
+        </div>
+        <div class="col-md-12">
+            <check if="{{ isset(@errors['indoore']) }}">
+                <p style="color: red">{{ @errors['indoore'] }}</p>
+            </check>
         </div>
 
         <div class="row">
@@ -46,12 +51,17 @@
         <div class="row col-md-12">
             <repeat group="{{@outdoor}}" value="{{@out}}">
                 <div class="col-3">
-                    <input type="checkbox" name="outdoor[]" value="{{@out}}">
+                    <input type="checkbox" name="outdoors[]" value="{{@out}}">
                     <repeat group="{{@outdoor}}" value="{{@selectedout}}">
                     </repeat>
                     {{@out}}
                 </div>
             </repeat>
+        </div>
+        <div class="col-md-12">
+            <check if="{{ isset(@errors['outdoore']) }}">
+                <p style="color: red">{{ @errors['outdoore'] }}</p>
+            </check>
         </div>
 
             <div class="offset-11">

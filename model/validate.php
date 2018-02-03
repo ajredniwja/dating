@@ -18,15 +18,6 @@ function validPhone($pnumber)
     return is_numeric($pnumber) && strlen($pnumber)  <= 10;
 }
 
-function validOutdoor($out, $outdoor)
-{
-    //return in_array($out, $outdoor);
-}
-
-function validIndoor($in, $indoor)
-{
-    //return in_array($in, $indoor);
-}
 
 if(!validName($fname))
 {
@@ -47,6 +38,11 @@ if(!validAge($age))
 if(!validPhone($pnumber))
 {
     $errors['pnumber'] = "Please enter a valid Phone Number";
+}
+
+if ($gender != "Female" && $gender != "Male")
+{
+    $errors['gender'] = "Select one";
 }
 
 
