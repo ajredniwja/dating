@@ -49,13 +49,5 @@ if(!validPhone($pnumber))
     $errors['pnumber'] = "Please enter a valid Phone Number";
 }
 
-//if(!validOutdoor($out, $outdoor))
-//{
-//    $errors['out'] = "Please select Valid activity";
-//}
-//if(!validAge($in, $indoor))
-//{
-//    $errors['in'] = "Please select Valid activity";
-//}
 
 $success = sizeof($errors) == 0;
