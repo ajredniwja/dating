@@ -3,14 +3,18 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 //Require the autoload file
 require_once('vendor/autoload.php');
-session_start();
 
+include ('classes/Member.php');
+include ('classes/PremiumMember.php');
 //Create an instance of the Base Class
 $f3 = Base :: instance();
 
 //Set debug level
 //will take care of php errors as well which gives 500 error
 $f3->set('DEBUG', 3);
+
+session_start();
+
 
 $f3->set('indoor', array('tv', 'movies', 'cooking', 'board games', 'puzzles', 'reading', 'playing cards', 'video games'));
 $f3->set('outdoor', array('hiking', 'biking', 'swimming', 'collecting', 'walking', 'climbing'));
@@ -38,6 +42,7 @@ $f3->route('GET|POST /personalInfo', function($f3)
         $age = $_POST['age'];
         $gender = $_POST['gender'];
         $pnumber = $_POST['pnumber'];
+        $premium = $_POST['premium'];
 
         require ('model/validate.php');
 
@@ -51,14 +56,22 @@ $f3->route('GET|POST /personalInfo', function($f3)
         //print_r($_POST);
         if($success)
         {
-            $_SESSION['fname'] = $fname;
-            $_SESSION['lname'] = $lname;
-            $_SESSION['gender'] = $gender;
-            $_SESSION['age'] = $age;
-            $_SESSION['pnumber'] = $pnumber;
+            if ($premium == 'yes')
+            {
+                $premiumMember = new PremiumMember($fname,$lname,$age,$gender,$pnumber);
+                $_SESSION['Member'] = $premiumMember;
+                header("Location: http://asingh.greenriverdev.com/328/dating/profile");
+            }
+            else
+            {
+                $Member = new Member($fname,$lname,$age,$gender,$pnumber);
+                $_SESSION['Member'] = $Member;
+                header("Location: http://asingh.greenriverdev.com/328/dating/profile");
+            }
 
+            $_SESSION['premium'] = $premium;
 
-            header("Location: http://asingh.greenriverdev.com/328/dating/profile");
+            //header("Location: http://asingh.greenriverdev.com/328/dating/profile");
         }
     }
     $template = new Template();
@@ -71,7 +84,7 @@ $f3->route('GET|POST /profile', function($f3)
 {
     if (isset($_POST['submit']))
     {
-        print_r($_POST);
+        //print_r($_POST);
         $email = $_POST['email'];
         $state = $_POST['state'];
         $seeking = $_POST['seeking'];
@@ -89,10 +102,19 @@ $f3->route('GET|POST /profile', function($f3)
 
         if($success)
         {
-            $_SESSION['email'] = $email;
-            $_SESSION['seeking'] = $seeking;
-            $_SESSION['bio'] = $bio;
-            header("Location: http://asingh.greenriverdev.com/328/dating/interests");
+            $Member = $_SESSION['Member'];
+            $Member->setBio($bio);
+            $Member->setEmail($email);
+            $Member->setSeeking($seeking);
+            $_SESSION['Member'] = $Member;
+            if ($_SESSION['premium'] == 'yes')
+            {
+                header("Location: http://asingh.greenriverdev.com/328/dating/interests");
+            }
+            else
+            {
+                header("Location: http://asingh.greenriverdev.com/328/dating/summary");
+            }
         }
     }
 
@@ -115,11 +137,14 @@ $f3->route('GET|POST /interests', function($f3)
         $f3->set('in',$in);
         $f3->set('success',$success);
         $f3->set('errors', $errors);
-        //print_r($errors);
+
+        $Member = $_SESSION['Member'];
+        $Member->setOutdoor($out);
+        $Member->setIndoor($in);
+        //print_r($Member);
         if ($success)
         {
-            $_SESSION['out'] = $out;
-            $_SESSION['in'] = $in;
+            $_SESSION['Member'] = $Member;
             header("Location: http://asingh.greenriverdev.com/328/dating/summary");
         }
 
@@ -132,18 +157,20 @@ $f3->route('GET|POST /interests', function($f3)
 
 $f3->route('GET|POST /summary', function($f3)
 {
-    $f3->set('fname', $_SESSION['fname']);
-    $f3->set('lname', $_SESSION['lname']);
-    $f3->set('age', $_SESSION['age']);
-    $f3->set('gender', $_SESSION['gender']);
-    $f3->set('pnumber', $_SESSION['pnumber']);
-    $f3->set('email', $_SESSION['email']);
-    $f3->set('seeking', $_SESSION['seeking']);
-    $f3->set('interests', $_SESSION['interests']);
-    $f3->set('bio', $_SESSION['bio']);
-    $f3->set('out', $_SESSION['out']);
-    $f3->set('in', $_SESSION['in']);
-
+    $Member = $_SESSION['Member'];
+    $f3->set('fname', $Member->getFname());
+    $f3->set('lname', $Member->getLname());
+    $f3->set('age', $Member->getAge());
+    $f3->set('gender', $Member->getGender());
+    $f3->set('pnumber', $Member->getPhone());
+    $f3->set('email', $Member->getEmail());
+    $f3->set('seeking', $Member->getSeeking());
+    $f3->set('bio', $Member->getBio());
+    if ($_SESSION['premium'] == 'yes')
+    {
+        $f3->set('out', $Member->getOutdoor());
+        $f3->set('in', $Member->getIndoor());
+    }
     $template = new Template();
     echo $template->render('pages/summary.html');
 
