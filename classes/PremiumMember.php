@@ -1,4 +1,9 @@
+<!--Ajwinder Singh-->
+<!--2/14/2018-->
+<!--validateProfile.php-->
+<!--Premium Member class-->
 <?php
+//class extending Member
 class PremiumMember extends Member
 {
     private $_indoor;
@@ -6,10 +11,12 @@ class PremiumMember extends Member
 
     function __construct($fname, $lname, $age, $gender, $phone)
     {
+        //passing to parent constructor
         parent::__construct($fname, $lname, $age, $gender, $phone);
     }
 
 
+    //additional getters and setters
     public function getIndoor()
     {
         return $this->_indoor;

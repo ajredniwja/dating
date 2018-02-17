@@ -1,7 +1,12 @@
+<!--Ajwinder Singh-->
+<!--2/14/2018-->
+<!--validateProfile.php-->
+<!--Member class-->
 <?php
 
 class Member
 {
+    //protected fields
     protected $fname;
     protected $lname;
     protected $age;
@@ -11,6 +16,7 @@ class Member
     protected $seeking;
     protected $bio;
 
+    //constructor accepts $fname, $lname, $age, $gender, $phone
     function __construct($fname, $lname, $age, $gender, $phone)
     {
         $this->fname = $fname;
@@ -19,6 +25,8 @@ class Member
         $this->gender = $gender;
         $this->phone = $phone;
     }
+
+    //getters & setters
 
     public function getFname()
     {
