@@ -21,7 +21,7 @@
         <h1>Interests</h1>
         <hr>
     </div>
-    <form action="" method="post">
+    <form action="#" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-12">
                 <label class="font-weight-bold col-md-12">In-door Interests</label>
@@ -61,11 +61,26 @@
                 </div>
             </repeat>
         </div>
+
+
         <div class="col-md-12">
             <check if="{{ isset(@errors['outdoore']) }}">
                 <p style="color: red">{{ @errors['outdoore'] }}</p>
             </check>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-white">jh</h3>
+                <label class="font-weight-bold col-md-12">Upload Image(Optional)</label>
+            </div>
+        </div>
+        <div class="row col-md-12">
+                <label class="col-md-12">Selet Image</label>
+                <input class="col-12" type="file" name="imgfile" id="imgfile">
+                <small class="col-12">jpg/jpeg/png</small>
+        </div>
+
 
             <div class="offset-11">
                 <button type="submit" name="submit" class="btn btn-primary brn-lg">Next ></button>
