@@ -1,12 +1,21 @@
-<!--Ajwinder Singh-->
-<!--2/14/2018-->
-<!--validateProfile.php-->
-<!--Member class-->
 <?php
+//<!--Ajwinder Singh-->
+//<!--2/15/2018-->
+//<!--Membe.php-->
 
+
+/**
+ * Class Member for a regular member without the premium
+ *
+ * Takes fname, lname, age, gender and phone.
+ * Used to create a regular member
+ *
+ * @author Ajwinder Singh
+ * @copyright 2018
+ */
 class Member
 {
-    //protected fields
+    //fields
     protected $fname;
     protected $lname;
     protected $age;
@@ -16,7 +25,6 @@ class Member
     protected $seeking;
     protected $bio;
 
-    //constructor accepts $fname, $lname, $age, $gender, $phone
     function __construct($fname, $lname, $age, $gender, $phone)
     {
         $this->fname = $fname;
@@ -25,8 +33,6 @@ class Member
         $this->gender = $gender;
         $this->phone = $phone;
     }
-
-    //getters & setters
 
     public function getFname()
     {

@@ -1,9 +1,20 @@
-<!--Ajwinder Singh-->
-<!--2/14/2018-->
-<!--validateProfile.php-->
-<!--Premium Member class-->
 <?php
 //class extending Member
+//<!--Ajwinder Singh-->
+//<!--2/1/2018-->
+//<!--PremiumMember.php-->
+
+
+/**The premium member class extends the member class
+ *
+ * Used to make a primum member
+ * getters and setters for intereset included extra
+ *
+ * Class PremiumMember
+ *
+ * @author Ajwinder Singh
+ * @copyright 2018
+ */
 class PremiumMember extends Member
 {
     private $_indoor;
