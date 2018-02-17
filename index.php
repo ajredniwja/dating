@@ -1,21 +1,20 @@
 <?php
-//error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
+
 //Require the autoload file
 require_once('vendor/autoload.php');
 
-include ('classes/Member.php');
-include ('classes/PremiumMember.php');
+//start a session
+session_start();
+
 //Create an instance of the Base Class
 $f3 = Base :: instance();
 
 //Set debug level
 //will take care of php errors as well which gives 500 error
 $f3->set('DEBUG', 3);
-
 //start the session
-session_start();
 
 //making arrays
 $f3->set('indoor', array('tv', 'movies', 'cooking', 'board games', 'puzzles', 'reading', 'playing cards', 'video games'));
@@ -206,11 +205,11 @@ $f3->route('GET|POST /summary', function($f3)
         $f3->set('out', $Member->getOutdoor());
         $f3->set('in', $Member->getIndoor());
     }
+    //render
     $template = new Template();
     echo $template->render('pages/summary.html');
 
 });
-
 
 //Run fat free
 $f3->run();
