@@ -24,6 +24,23 @@ class Member
     protected $email;
     protected $seeking;
     protected $bio;
+    protected $state;
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param mixed $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
 
     function __construct($fname, $lname, $age, $gender, $phone)
     {
