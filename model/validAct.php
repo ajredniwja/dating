@@ -19,11 +19,13 @@ function validIndoor($in)
 }
 
 //settings errors
+//if indoor array is not set, set the errors array
 if (!isset($in))
 {
     $errors['indoore'] = "Select atleast one indoor activity!";
 }
 
+//if the outdoor array is not set, set the errors array
 if (!isset($out))
 {
     $errors['outdoore'] = "Select atleast one indoor activity!";

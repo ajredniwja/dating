@@ -1,9 +1,15 @@
 <?php
+//Ajwinder Singh
+//3/2/2018
+//index.php
+
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 
-//Require the autoload file
+//Require the files
 require_once('vendor/autoload.php');
+//require config file
+require_once('/home/asinghgr/config.php');
 
 //start a session
 session_start();
@@ -25,6 +31,12 @@ $f3->set('states',array('Alabama','Alaska','Arizona','Arkansas','California','Co
     'Ohio','Oklahoma','Oregon','Pennsylvania', 'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont',
     'Virginia','Washington','West Virginia','Wisconsin','Wyoming'));
 
+//make dbfunctions class object
+$database = new Dbfunctions();
+
+//call connect function from dbfunctions class to connect to the database
+$dbh = $database->connect();
+
 //Define a default route
 $f3->route('GET /', function($f3)
 {
@@ -39,7 +51,7 @@ $f3->route('GET|POST /personalInfo', function($f3)
     //if submit hit
     if (isset($_POST['submit']))
     {
-        //geting data from the form
+        //geting data from the form and setting it to the variables
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $age = $_POST['age'];
@@ -117,6 +129,7 @@ $f3->route('GET|POST /profile', function($f3)
             $Member->setBio($bio);
             $Member->setEmail($email);
             $Member->setSeeking($seeking);
+            $Member->setState($state);
             //putting to session variable again
             $_SESSION['Member'] = $Member;
             if ($_SESSION['premium'] == 'yes')
@@ -185,11 +198,27 @@ $f3->route('GET|POST /interests', function($f3)
 
 });
 
+$f3->route('GET /admin', function($f3, $params) {
+
+    $database = new Dbfunctions();
+
+    //print_r($_SESSION);
+    $members = $database->getMembers();
+    $f3->set('members', $members);
+
+    $template = new Template();
+    echo $template->render('pages/admin.html');
+
+});
+
 //summary page
 $f3->route('GET|POST /summary', function($f3)
 {
     //make object from session variable
     $Member = $_SESSION['Member'];
+
+    $image = "Not provided";
+
     //setting fatfree variables usung getters
     $f3->set('fname', $Member->getFname());
     $f3->set('lname', $Member->getLname());
@@ -199,17 +228,63 @@ $f3->route('GET|POST /summary', function($f3)
     $f3->set('email', $Member->getEmail());
     $f3->set('seeking', $Member->getSeeking());
     $f3->set('bio', $Member->getBio());
+
+
+
+    if ($_SESSION['premium'] !== 'yes')
+    {
+        $database = new Dbfunctions();
+        $premium = 0;
+        //interests == "" here
+        $database->insertStudent($memberID, $Member->getFname(), $Member->getLname(), $Member->getAge(), $Member->getGender(), $Member->getPhone(), $Member->getEmail(), $Member->getState(), $Member->getSeeking(), $Member->getBio(), $premium, $image, "N/A");
+    }
+
+
+
     if ($_SESSION['premium'] == 'yes')
     {
+        //initiate a variable
+        $interest = "";
+
+        $database = new Dbfunctions();
+        $premium = 1;
         //only set if premium is checked
         $f3->set('out', $Member->getOutdoor());
         $f3->set('in', $Member->getIndoor());
+        $f3->set('pm', 'yes');
+
+        //merge indoor and outdoor array
+        $interests = array_merge($Member->getOutdoor(),$Member->getIndoor());
+        ///concatenate all the elements in the array
+        foreach ($interests as $in)
+        {
+            $interest.=$in.", ";
+        }
+        //interests is the result from above merged array
+        $database->insertStudent($memberID, $Member->getFname(), $Member->getLname(), $Member->getAge(), $Member->getGender(), $Member->getPhone(), $Member->getEmail(), $Member->getSTate(), $Member->getSeeking(), $Member->getBio(), $premium, $image, $interest);
     }
     //render
     $template = new Template();
     echo $template->render('pages/summary.html');
 
 });
+
+//Define a summary route
+$f3->route('GET /admin/@fname', function($f3, $params) {
+
+    //dbfunctions object
+    $database = new Dbfunctions();
+    $sid = $params['fname'];
+    //call getMember function
+    $member = $database->getMember($sid);
+    $f3->set('member', $member);
+
+    //render
+    $template = new Template();
+    echo $template->render('pages/view-member.html');
+
+});
+
 
 //Run fat free
 $f3->run();

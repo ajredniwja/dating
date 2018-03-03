@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h3>View Student</h3>
-
-<p>{{@member['fname']}} {{@student['lname']}}</p>
-<p>SID: {{@member['gender']}}</p>
-<p>GPA: {{@member['bio']}}</p>
-<p>Passing</p>
-</body>
-</html>
-
 <!--Ajwinder Singh-->
 <!--2/1/2018-->
-<!--home.html-->
+<!--view-member.html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,18 +30,27 @@
     <h1>
         Member Information
     </h1>
-    <ol>
+    <ul>
         <li>NAME: {{@member['fname']}} {{@student['lname']}}</li>
-        <li>SID: {{@member['gender']}}</li>
-        <li>GPA: {{@member['bio']}}</li>
-        <li>NAME: {{@member['fname']}} {{@student['lname']}}</li>
-        <li>SID: {{@member['gender']}}</li>
-        <li>GPA: {{@member['bio']}}</li>
-        <li>Passing</li>
-        <li>NAME: {{@member['fname']}} {{@student['lname']}}</li>
-        <li>SID: {{@member['gender']}}</li>
-        <li>GPA: {{@member['bio']}}</li>
-        </ol>
+        <li>AGE: {{@member['age']}}</li>
+        <li>GENDER: {{@member['gender']}}</li>
+        <li>PHONE: {{@member['phone']}}</li>
+        <li>EMAIL: {{@member['email']}}</li>
+        <li>STATE: {{@member['state']}}</li>
+        <li>SEEKING: {{@member['seeking']}}</li>
+        <li>BIO: {{@member['bio']}}</li>
+        <check if="{{@member['premium']}} == 1">
+            <li>Premium : Yes Premium Member</li>
+        </check>
+        <check if="{{@member['premium']}} == 0">
+            <li>Premium : Not a Member</li>
+        </check>
+        <check if="{{@member['premium']}} == 1">
+            <li>Interests : {{ @member['interests'] }}
+            </li>
+        </check>
+
+        </ul>
 </div> <!--container fluid-->
 </body>
 </html>

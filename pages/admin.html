@@ -45,6 +45,9 @@
                 <th>Premium</th>
                 <th>Image</th>
                 <th>Interests</th>
+                <th>View</th>
+
+
                 </tr>
             </thead>
             <tbody>
@@ -103,6 +106,9 @@
                     </td>
                     <td>
                         {{ @member['interests'] }}
+                    </td>
+                    <td>
+                        <a href="{{ @BASE }}/admin/{{ @member['fname']}}">View</a>
                     </td>
                 </tr>
             </repeat>

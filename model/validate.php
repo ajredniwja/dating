@@ -3,6 +3,7 @@
 <!--validate.php-->
 <!--validate personalinfo page-->
 <?php
+
 //checks if the first name is empty or not
 //also if it has valid string
 function validName($fname)
@@ -10,6 +11,7 @@ function validName($fname)
     return !empty($fname) && ctype_alpha($fname);
 }
 
+//calls the valid name function
 validName($lname);
 
 //function to validate age
@@ -44,7 +46,7 @@ if(!validAge($age))
 
 if(!validPhone($pnumber))
 {
-    $errors['pnumber'] = "Please enter a valid Phone Number";
+    $errors['pnumber'] = "Please enter a valid Phone Number, must be less than 10 digits and numeric";
 }
 
 if ($gender != "Female" && $gender != "Male")

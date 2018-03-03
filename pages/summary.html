@@ -51,6 +51,7 @@
                    <tr>
                        <th scope="col" class="text-muted font-weight-normal">Seeking: {{@seeking}}</th>
                    </tr>
+                   <check if="{{@pm}} == yes">
                    <tr>
                        <th scope="col" class="text-muted font-weight-normal">Interests:
                            <repeat group="{{@in}}" value="@indoor">
@@ -61,6 +62,7 @@
                            </repeat>
                        </th>
                    </tr>
+                   </check>
                </table>
             </div>
             <div class="col-md-3 offset-2">
