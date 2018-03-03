@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>View Student</h3>
+
+<p>{{@member['fname']}} {{@student['lname']}}</p>
+<p>SID: {{@member['gender']}}</p>
+<p>GPA: {{@member['bio']}}</p>
+<p>Passing</p>
+</body>
+</html>
+
+<!--Ajwinder Singh-->
+<!--2/1/2018-->
+<!--home.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="http://asingh.greenriverdev.com/328/dating/styles/styles.css">
+
+    <title>My dating website</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<!--upper nav-->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <a class="navbar-brand" href="http://asingh.greenriverdev.com/328/dating/">My dating Website</a>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <span class="navbar-text">
+            <a class="nav-link" href="http://asingh.greenriverdev.com/328/dating/admin">Admin Login <span class="sr-only">(current)</span></a>
+        </span>
+    </div>
+</nav>
+
+<div class="container-fluid rounded">
+    <h1>
+        Member Information
+    </h1>
+    <ol>
+        <li>NAME: {{@member['fname']}} {{@student['lname']}}</li>
+        <li>SID: {{@member['gender']}}</li>
+        <li>GPA: {{@member['bio']}}</li>
+        <li>NAME: {{@member['fname']}} {{@student['lname']}}</li>
+        <li>SID: {{@member['gender']}}</li>
+        <li>GPA: {{@member['bio']}}</li>
+        <li>Passing</li>
+        <li>NAME: {{@member['fname']}} {{@student['lname']}}</li>
+        <li>SID: {{@member['gender']}}</li>
+        <li>GPA: {{@member['bio']}}</li>
+        </ol>
+</div> <!--container fluid-->
+</body>
+</html>
