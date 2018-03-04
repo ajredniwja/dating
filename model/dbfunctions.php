@@ -131,7 +131,7 @@ class Dbfunctions
      * @param $interests interests
      * @return retuns the execute statement
      */
-    function insertStudent($memberID, $fname, $lname, $age, $gender, $phone, $email, $state, $seeking, $bio, $premium, $image, $interests)
+    function insertMember($memberID, $fname, $lname, $age, $gender, $phone, $email, $state, $seeking, $bio, $premium, $image, $interests)
     {
         global $dbh;
 

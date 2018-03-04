@@ -261,7 +261,7 @@ $f3->route('GET|POST /summary', function($f3)
             $interest.=$in.", ";
         }
         //interests is the result from above merged array
-        $database->insertStudent($memberID, $Member->getFname(), $Member->getLname(), $Member->getAge(), $Member->getGender(), $Member->getPhone(), $Member->getEmail(), $Member->getSTate(), $Member->getSeeking(), $Member->getBio(), $premium, $image, $interest);
+        $database->insertMember($memberID, $Member->getFname(), $Member->getLname(), $Member->getAge(), $Member->getGender(), $Member->getPhone(), $Member->getEmail(), $Member->getSTate(), $Member->getSeeking(), $Member->getBio(), $premium, $image, $interest);
     }
     //render
     $template = new Template();
